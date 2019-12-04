@@ -17,6 +17,7 @@ public class Gun : MonoBehaviour
 
     [Header("Weapon attachments")]
     [SerializeField] private ParticleSystem muzzleFlash;
+    [SerializeField] private GameObject impaktEffect;
     private Camera cam;
     private Animator anim;
 
@@ -80,6 +81,9 @@ public class Gun : MonoBehaviour
             {
                 healthScript.TakeDamage(damage);
             }
+
+            GameObject impakt = Instantiate(impaktEffect, hit.point, Quaternion.LookRotation(hit.normal));
+            Destroy(impakt, 2f);
         }
     }
 
