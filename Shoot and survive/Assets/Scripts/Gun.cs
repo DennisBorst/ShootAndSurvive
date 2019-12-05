@@ -7,13 +7,16 @@ public class Gun : MonoBehaviour
     [Header("Weapon Stats")]
     [SerializeField] private int damage;
     [SerializeField] private int amountOfBullets;
+    [SerializeField] private int totalAmountOfBullets;
     [SerializeField] private float rateOfFire;
     [SerializeField] private float reloadTime;
     [SerializeField] private float maxShootDistance;
-    private int currentAmountOfBullets;
+
+    [SerializeField] private int currentAmountOfBullets;
     private float currentReloadTime;
-    private bool isReloading;
     private float nextTimeToFire = 0f;
+    private bool isReloading;
+    private bool pickedUp = false;
 
     [Header("Weapon attachments")]
     [SerializeField] private ParticleSystem muzzleFlash;
@@ -28,7 +31,6 @@ public class Gun : MonoBehaviour
         currentReloadTime = reloadTime;
 
         anim = GetComponent<Animator>();
-        cam = GetComponentInParent<Camera>();
     }
 
     private void OnEnable()
@@ -40,6 +42,11 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!pickedUp)
+        {
+            return;
+        }
+
         Reloading();
         ShootCheck();
     }
@@ -53,16 +60,23 @@ public class Gun : MonoBehaviour
 
         if (currentAmountOfBullets <= 0 || Input.GetKeyDown(KeyCode.R) && currentAmountOfBullets != amountOfBullets)
         {
-            StartCoroutine(Reload());
+            ShowAmountOfBullets();
+
+            if (totalAmountOfBullets > 0)
+            {
+                totalAmountOfBullets -= (amountOfBullets - currentAmountOfBullets);
+                StartCoroutine(Reload());
+            }
             return;
         }
     }
 
     private void ShootCheck()
     {
-        if(!isReloading && Input.GetKey(KeyCode.Mouse0) && Time.time >= nextTimeToFire)
+        if(!isReloading && Input.GetKey(KeyCode.Mouse0) && currentAmountOfBullets > 0 && Time.time >= nextTimeToFire)
         {
             nextTimeToFire = Time.time + 1f / rateOfFire;
+            UIManager.Instance.AmmoInGun(currentAmountOfBullets);
             currentAmountOfBullets--;
             Shoot();
         }
@@ -96,7 +110,35 @@ public class Gun : MonoBehaviour
         anim.SetBool("Reloading", false);
         yield return new WaitForSeconds(0.25f);
 
-        currentAmountOfBullets = amountOfBullets;
+        if(amountOfBullets < totalAmountOfBullets)
+        {
+            currentAmountOfBullets = amountOfBullets;
+        }
+        else
+        {
+            currentAmountOfBullets = totalAmountOfBullets;
+            totalAmountOfBullets = 0;
+        }
+
         isReloading = false;
+
+        ShowAmountOfBullets();
+    }
+
+    public void PickedUp()
+    {
+        cam = GetComponentInParent<Camera>();
+        pickedUp = true;
+    }
+
+    public void IncreaseAmmo(int ammo)
+    {
+        totalAmountOfBullets += ammo;
+    }
+
+    public void ShowAmountOfBullets()
+    {
+        UIManager.Instance.AmmoInBag(totalAmountOfBullets);
+        UIManager.Instance.AmmoInGun(currentAmountOfBullets);
     }
 }

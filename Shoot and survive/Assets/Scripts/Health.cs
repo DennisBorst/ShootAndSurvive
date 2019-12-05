@@ -4,18 +4,15 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public float health;
+    public bool player;
+    public int health;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (player)
+        {
+            UIManager.Instance.HealthAmount(health);
+        }
     }
 
     public void TakeDamage(int damage)
