@@ -41,15 +41,15 @@ public class AIController : MonoBehaviour
     private void Attack()
     {
         timeBetweenAttacks -= Time.deltaTime;
-        if(Health.playerHealthStatic > 0)
+        if(PlayerController.playerHealthStatic > 0)
         {
             anim.SetTrigger("Attacking");
             if (timeBetweenAttacks <= 0)
             {
-                Health.playerHealthStatic -= damage;
+                PlayerController.playerHealthStatic -= damage;
                 timeBetweenAttacks = resetTimeBetweenAttacks;
             }
         }
-        print(Health.playerHealthStatic);
+        print(PlayerController.playerHealthStatic);
     }
 }

@@ -65,8 +65,8 @@ public class PickUp : MonoBehaviour
             }
             else if (pickUpItem.isHealth)
             {
-                Health health = GetComponent<Health>();
-                Health.playerHealthStatic += pickUpItem.healthAmount;
+                //Health health = GetComponent<Health>();
+                PlayerController.playerHealthStatic += pickUpItem.healthAmount;
                 Destroy(pickUpItem.gameObject);
             }
         }

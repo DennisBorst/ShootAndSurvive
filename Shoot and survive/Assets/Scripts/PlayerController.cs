@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static int playerHealthStatic;
+    public int playerHealth;
+
     [Header("Player Movement")]
     [SerializeField] private float movementSpeed;
     [SerializeField] private float jumpHeight;
@@ -27,11 +30,14 @@ public class PlayerController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         playerController = GetComponent<CharacterController>();
+
+        playerHealthStatic = playerHealth;
     }
 
     // Update is called once per frame
     void Update()
     {
+        UIManager.Instance.HealthAmount(playerHealthStatic);
         isGrounded = Physics.CheckSphere(groundCheck.position, circleRadius, groundLayer);
 
         CameraRotation();
