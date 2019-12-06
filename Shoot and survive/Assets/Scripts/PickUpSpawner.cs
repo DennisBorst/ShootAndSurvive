@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PickUpSpawner : MonoBehaviour
 {
-    [SerializeField] float timeBetweenPickUps = 10f;
+    [SerializeField] private float timeBetweenPickUps = 10f;
+    [SerializeField] private int maxItemsActive;
+    private bool isSpawning = false;
     public GameObject[] pickUp;
     public Transform[] spawnPoints;
 
@@ -13,12 +15,30 @@ public class PickUpSpawner : MonoBehaviour
         StartCoroutine(SpawnPickUp());
     }
 
+    private void Update()
+    {
+        if(maxItemsActive <= this.transform.childCount)
+        {
+            return;
+        }
+
+        if (!isSpawning)
+        {
+            StartCoroutine(SpawnPickUp());
+        }
+    }
+
     IEnumerator SpawnPickUp()
     {
-        GameObject randomEnemy = pickUp[Random.Range(0, pickUp.Length)];
+        isSpawning = true;
+
+        float randomTime = Random.Range((timeBetweenPickUps / 2), timeBetweenPickUps);
+        GameObject randomItem = pickUp[Random.Range(0, pickUp.Length)];
         Transform randomSpot = spawnPoints[Random.Range(0, spawnPoints.Length)];
-        Instantiate(randomEnemy, randomSpot.position, randomSpot.rotation);
-        yield return new WaitForSeconds(timeBetweenPickUps);
+        Instantiate(randomItem, randomSpot.position, randomItem.transform.rotation);
+
+        yield return new WaitForSeconds(randomTime);
+
+        isSpawning = false;
     }
 }
-

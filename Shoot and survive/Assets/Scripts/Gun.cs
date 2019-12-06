@@ -21,6 +21,7 @@ public class Gun : MonoBehaviour
     [Header("Weapon attachments")]
     [SerializeField] private ParticleSystem muzzleFlash;
     [SerializeField] private GameObject impaktEffect;
+    [SerializeField] private LayerMask layersAbleToShoot;
     private Camera cam;
     private Animator anim;
 
@@ -58,15 +59,10 @@ public class Gun : MonoBehaviour
             return;
         }
 
-        if (currentAmountOfBullets <= 0 || Input.GetKeyDown(KeyCode.R) && currentAmountOfBullets != amountOfBullets)
+        if (currentAmountOfBullets <= 0 || Input.GetKeyDown(KeyCode.R) && totalAmountOfBullets > 0)
         {
             ShowAmountOfBullets();
-
-            if (totalAmountOfBullets > 0)
-            {
-                totalAmountOfBullets -= (amountOfBullets - currentAmountOfBullets);
-                StartCoroutine(Reload());
-            }
+            StartCoroutine(Reload());
             return;
         }
     }
@@ -87,7 +83,7 @@ public class Gun : MonoBehaviour
         muzzleFlash.Play();
 
         RaycastHit hit;
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, maxShootDistance))
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, maxShootDistance, layersAbleToShoot))
         {
             Health healthScript = hit.transform.GetComponent<Health>();
 
@@ -110,25 +106,27 @@ public class Gun : MonoBehaviour
         anim.SetBool("Reloading", false);
         yield return new WaitForSeconds(0.25f);
 
-        if(amountOfBullets < totalAmountOfBullets)
+
+        if (amountOfBullets < totalAmountOfBullets + currentAmountOfBullets)
         {
+            totalAmountOfBullets = totalAmountOfBullets - (amountOfBullets - currentAmountOfBullets) + 1;
             currentAmountOfBullets = amountOfBullets;
         }
         else
         {
-            currentAmountOfBullets = totalAmountOfBullets;
+            currentAmountOfBullets += totalAmountOfBullets;
             totalAmountOfBullets = 0;
         }
+        ShowAmountOfBullets();
 
         isReloading = false;
-
-        ShowAmountOfBullets();
     }
 
     public void PickedUp()
     {
         cam = GetComponentInParent<Camera>();
         pickedUp = true;
+        ShowAmountOfBullets();
     }
 
     public void IncreaseAmmo(int ammo)
