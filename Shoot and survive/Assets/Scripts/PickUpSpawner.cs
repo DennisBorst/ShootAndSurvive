@@ -35,7 +35,7 @@ public class PickUpSpawner : MonoBehaviour
         float randomTime = Random.Range((timeBetweenPickUps / 2), timeBetweenPickUps);
         GameObject randomItem = pickUp[Random.Range(0, pickUp.Length)];
         Transform randomSpot = spawnPoints[Random.Range(0, spawnPoints.Length)];
-        Instantiate(randomItem, randomSpot.position, randomItem.transform.rotation);
+        Instantiate(randomItem, randomSpot.position, randomItem.transform.rotation, this.transform);
 
         yield return new WaitForSeconds(randomTime);
 

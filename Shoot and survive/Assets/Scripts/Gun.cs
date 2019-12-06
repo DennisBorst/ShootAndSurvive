@@ -90,6 +90,7 @@ public class Gun : MonoBehaviour
             if(healthScript != null)
             {
                 healthScript.TakeDamage(damage);
+                UIManager.Instance.ShowCrossHairHit();
             }
 
             GameObject impakt = Instantiate(impaktEffect, hit.point, Quaternion.LookRotation(hit.normal));
