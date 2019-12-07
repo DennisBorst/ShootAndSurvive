@@ -190,7 +190,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealth: 50
-  movementSpeed: 20
+  moveSpeed: 10
+  sprintSpeed: 30
   jumpHeight: 4
   cameraSensitivity: 100
   camera: {fileID: 3713148798295286512}

@@ -5,17 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class WrapperInput : MonoBehaviour
 {
-    //Walking
-    public float horizontalMovement;
-    public float verticalMovement;
-
-    //Camera
-    public float horizontalCamera;
-    public float verticalCamera;
-
     //Buttons
     public static KeyCode jumpKey;
     public static KeyCode shootKey;
+    public static KeyCode reloadKey;
     public static KeyCode sprintKey;
 
 #if UNITY_EDITOR
@@ -32,7 +25,11 @@ public class WrapperInput : MonoBehaviour
 
     private void Start()
     {
-#if USE_CONTROLLER  
+#if UNITY_EDITOR
+        PCInput();
+#endif
+
+#if USE_CONTROLLER
         ControllerInput();
 #endif //USE_CONTROLLER
 
@@ -45,6 +42,7 @@ public class WrapperInput : MonoBehaviour
     {
         jumpKey = KeyCode.Joystick1Button0;
         shootKey = KeyCode.Joystick1Button10;
+        reloadKey = KeyCode.Joystick1Button2;
         sprintKey = KeyCode.Joystick1Button8;
     }
 
@@ -52,6 +50,7 @@ public class WrapperInput : MonoBehaviour
     {
         jumpKey = KeyCode.Space;
         shootKey = KeyCode.Mouse0;
+        reloadKey = KeyCode.R;
         sprintKey = KeyCode.LeftShift;
     }
 

@@ -5832,6 +5832,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 1419115395}
+  deathCanvas: {fileID: 0}
 --- !u!4 &1307723848
 Transform:
   m_ObjectHideFlags: 0
@@ -6491,21 +6492,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3713148798119319307, guid: a9267199a626cf249a403ed61eb7bfb3,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3713148798119319311, guid: a9267199a626cf249a403ed61eb7bfb3,
-        type: 3}
-      propertyPath: moveSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3713148798119319311, guid: a9267199a626cf249a403ed61eb7bfb3,
-        type: 3}
-      propertyPath: sprintSpeed
-      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9267199a626cf249a403ed61eb7bfb3, type: 3}
