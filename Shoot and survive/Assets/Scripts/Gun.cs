@@ -40,8 +40,8 @@ public class Gun : MonoBehaviour
         anim = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
 
-        shootKey = WrapperInput.shootKey;
-        reloadKey = WrapperInput.reloadKey;
+        shootKey = WrapperInput.Instance.shootKey;
+        reloadKey = WrapperInput.Instance.reloadKey;
     }
 
     private void OnEnable()

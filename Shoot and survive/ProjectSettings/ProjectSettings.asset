@@ -548,7 +548,7 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLWasmStreaming: 0
   scriptingDefineSymbols:
-    1: UseController
+    1: USE_KEY_BOARD
   platformArchitecture: {}
   scriptingBackend: {}
   il2cppCompilerConfiguration: {}

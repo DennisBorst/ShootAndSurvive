@@ -9,10 +9,15 @@ public class PickUp : MonoBehaviour
 
     private Camera cam;
 
+    //key
+    private KeyCode pickUpKey;
+
     // Start is called before the first frame update
     void Start()
     {
         cam = GetComponentInChildren<Camera>();
+
+        pickUpKey = WrapperInput.Instance.pickUpKey;
     }
 
     // Update is called once per frame

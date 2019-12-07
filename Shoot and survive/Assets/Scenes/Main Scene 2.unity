@@ -6215,6 +6215,11 @@ MonoBehaviour:
   verticalMovement: 0
   horizontalCamera: 0
   verticalCamera: 0
+  jumpKey: 0
+  sprintKey: 0
+  shootKey: 0
+  reloadKey: 0
+  pickUpKey: 0
 --- !u!4 &1473367922
 Transform:
   m_ObjectHideFlags: 0
@@ -6540,7 +6545,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3713148798119319307, guid: a9267199a626cf249a403ed61eb7bfb3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a9267199a626cf249a403ed61eb7bfb3, type: 3}
 --- !u!1 &1645937140 stripped
 GameObject:

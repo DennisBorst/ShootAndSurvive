@@ -27,7 +27,12 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private Vector3 velocity;
 
-    //Keys
+    //Input
+    //private float horizontalMovement;
+    //private float verticalMovement;
+    //private float horizontalCamera;
+    //private float verticalCamera;
+
     private KeyCode jumpKey;
     private KeyCode sprintKey;
 
@@ -39,13 +44,15 @@ public class PlayerController : MonoBehaviour
 
         playerHealthStatic = playerHealth;
 
-        jumpKey = WrapperInput.jumpKey;
-        sprintKey = WrapperInput.sprintKey;
+        //Input
+        jumpKey = WrapperInput.Instance.jumpKey;
+        sprintKey = WrapperInput.Instance.sprintKey;
     }
 
     // Update is called once per frame
     void Update()
     {
+
         UIManager.Instance.HealthAmount(playerHealthStatic);
         isGrounded = Physics.CheckSphere(groundCheck.position, circleRadius, groundLayer);
 
@@ -56,8 +63,10 @@ public class PlayerController : MonoBehaviour
 
     private void CameraRotation()
     {
-        float mouseX = Input.GetAxis("Mouse X") * cameraSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * cameraSensitivity * Time.deltaTime;
+        float mouseX = Input.GetAxis("MouseX") * cameraSensitivity * Time.deltaTime;
+        float mouseY = Input.GetAxis("MouseY") * cameraSensitivity * Time.deltaTime;
+
+        Debug.Log(mouseX);
 
         yCameraDirection -= mouseY;
         yCameraDirection = Mathf.Clamp(yCameraDirection, -70f, 70f);
@@ -68,8 +77,8 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerMovement()
     {
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        float x = Input.GetAxis("HorizontalPC");
+        float z = Input.GetAxis("VerticalPC");
 
         if (Input.GetKey(sprintKey))
         {

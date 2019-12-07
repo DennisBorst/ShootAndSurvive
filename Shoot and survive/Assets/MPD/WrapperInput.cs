@@ -5,23 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class WrapperInput : MonoBehaviour
 {
+    //Walking
+    public float horizontalMovement;
+    public float verticalMovement;
+
+    //Camera
+    public float horizontalCamera;
+    public float verticalCamera;
+
     //Buttons
-    public static KeyCode jumpKey;
-    public static KeyCode shootKey;
-    public static KeyCode reloadKey;
-    public static KeyCode sprintKey;
-
-#if UNITY_EDITOR
-
-#endif //UNITY_EDITOR
-
-#if USE_KEY_BOARD
-
-#endif //USE_KEY_BOARD
-
-#if USE_CONTROLLER
-
-#endif //USE_CONTROLLER
+    public KeyCode jumpKey;
+    public KeyCode sprintKey;
+    public KeyCode shootKey;
+    public KeyCode reloadKey;
+    public KeyCode pickUpKey;
 
     private void Start()
     {
@@ -38,21 +35,46 @@ public class WrapperInput : MonoBehaviour
 #endif //USE_KEY_BOARD
     }
 
-    public static void ControllerInput()
+    private void ControllerInput()
     {
         jumpKey = KeyCode.Joystick1Button0;
-        shootKey = KeyCode.Joystick1Button10;
+        shootKey = KeyCode.Joystick1Button7;
         reloadKey = KeyCode.Joystick1Button2;
         sprintKey = KeyCode.Joystick1Button8;
+        pickUpKey = KeyCode.Joystick1Button6;
     }
 
-    public static void PCInput()
+    private void PCInput()
     {
         jumpKey = KeyCode.Space;
         shootKey = KeyCode.Mouse0;
         reloadKey = KeyCode.R;
         sprintKey = KeyCode.LeftShift;
+        pickUpKey = KeyCode.E;
     }
+
+    /*
+    private void ControllerInputAxis()
+    {
+        horizontalMovement = Input.GetAxis("HorizontalController");
+        verticalMovement = Input.GetAxis("VerticalController");
+
+        horizontalCamera = Input.GetAxis("Mouse X Controller");
+        verticalMovement = Input.GetAxis("Mouse Y Controller");
+    }
+    */
+
+
+    /*
+    private void PCInputAxis()
+    {
+        horizontalMovement = Input.GetAxis("HorizontalPC");
+        verticalMovement = Input.GetAxis("VerticalPC");
+
+        //horizontalCamera = Input.GetAxis("Mouse X PC");
+        //verticalMovement = Input.GetAxis("Mouse Y PC");
+    }
+    */
 
     #region Singleton
 
