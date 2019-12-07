@@ -74,7 +74,17 @@ public class Gun : MonoBehaviour
             nextTimeToFire = Time.time + 1f / rateOfFire;
             UIManager.Instance.AmmoInGun(currentAmountOfBullets);
             currentAmountOfBullets--;
+
             Shoot();
+        }
+
+        if (!isReloading && Input.GetKey(KeyCode.Mouse0) && currentAmountOfBullets > 0)
+        {
+            anim.SetBool("Shooting", true);
+        }
+        else
+        {
+            anim.SetBool("Shooting", false);
         }
     }
 
@@ -128,6 +138,7 @@ public class Gun : MonoBehaviour
         cam = GetComponentInParent<Camera>();
         pickedUp = true;
         ShowAmountOfBullets();
+        anim.SetTrigger("PickedUp");
     }
 
     public void IncreaseAmmo(int ammo)

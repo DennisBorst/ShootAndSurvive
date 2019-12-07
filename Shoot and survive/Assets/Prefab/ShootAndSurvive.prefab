@@ -4918,7 +4918,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4065563777391552382}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.10394907, y: 0.11515808, z: 0.1824112}
+  m_LocalPosition: {x: 0.10394907, y: 0.113, z: 0.1824112}
   m_LocalScale: {x: 0.43644026, y: 0.43644026, z: 0.43644026}
   m_Children: []
   m_Father: {fileID: 5337334675304874555}
@@ -5234,7 +5234,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8955790777766309928}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5958178, y: 13.84, z: 1.4791725}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8692642013014293764}
@@ -5287,6 +5287,9 @@ MonoBehaviour:
   muzzleFlash: {fileID: 6522210436832898187}
   impaktEffect: {fileID: 1023281384379214451, guid: e27a0684e63a780498385e199831345b,
     type: 3}
+  layersAbleToShoot:
+    serializedVersion: 2
+    m_Bits: 311
 --- !u!135 &1594927535
 SphereCollider:
   m_ObjectHideFlags: 0

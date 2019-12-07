@@ -82,4 +82,14 @@ public class PlayerController : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         playerController.Move(velocity * Time.deltaTime);
     }
+
+    public static void TakeDamage(int damage)
+    {
+        playerHealthStatic -= damage;
+
+        if(playerHealthStatic <= 0)
+        {
+            Debug.Log("Game over, you died");
+        }
+    }
 }

@@ -46,7 +46,7 @@ public class AIController : MonoBehaviour
             anim.SetTrigger("Attacking");
             if (timeBetweenAttacks <= 0)
             {
-                PlayerController.playerHealthStatic -= damage;
+                PlayerController.TakeDamage(damage);
                 timeBetweenAttacks = resetTimeBetweenAttacks;
             }
         }
