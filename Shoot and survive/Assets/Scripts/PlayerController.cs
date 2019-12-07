@@ -27,6 +27,10 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private Vector3 velocity;
 
+    //Keys
+    private KeyCode jumpKey;
+    private KeyCode sprintKey;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +38,9 @@ public class PlayerController : MonoBehaviour
         playerController = GetComponent<CharacterController>();
 
         playerHealthStatic = playerHealth;
+
+        jumpKey = WrapperInput.jumpKey;
+        sprintKey = WrapperInput.sprintKey;
     }
 
     // Update is called once per frame
@@ -64,7 +71,7 @@ public class PlayerController : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        if (Input.GetButton("Run"))
+        if (Input.GetKey(sprintKey))
         {
             currentMoveSpeed = sprintSpeed;
         }
@@ -87,7 +94,7 @@ public class PlayerController : MonoBehaviour
             velocity.y = -2f;
         }
 
-        if(Input.GetButtonDown("Jump") && isGrounded)
+        if(Input.GetKeyDown(jumpKey) && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }

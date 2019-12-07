@@ -27,6 +27,10 @@ public class Gun : MonoBehaviour
     private Camera cam;
     private Animator anim;
 
+    //key
+    private KeyCode shootKey;
+    private KeyCode reloadKey;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +39,9 @@ public class Gun : MonoBehaviour
 
         anim = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+
+        shootKey = WrapperInput.shootKey;
+        reloadKey = WrapperInput.reloadKey;
     }
 
     private void OnEnable()
@@ -62,7 +69,7 @@ public class Gun : MonoBehaviour
             return;
         }
 
-        if (currentAmountOfBullets <= 0 || Input.GetKeyDown(KeyCode.R) && totalAmountOfBullets > 0)
+        if (currentAmountOfBullets <= 0 || Input.GetKeyDown(reloadKey) && totalAmountOfBullets > 0 && currentAmountOfBullets != amountOfBullets)
         {
             ShowAmountOfBullets();
             StartCoroutine(Reload());
@@ -72,7 +79,7 @@ public class Gun : MonoBehaviour
 
     private void ShootCheck()
     {
-        if(!isReloading && Input.GetKey(KeyCode.Mouse0) && currentAmountOfBullets > 0 && Time.time >= nextTimeToFire)
+        if(!isReloading && Input.GetKey(shootKey) && currentAmountOfBullets > 0 && Time.time >= nextTimeToFire)
         {
             nextTimeToFire = Time.time + 1f / rateOfFire;
             UIManager.Instance.AmmoInGun(currentAmountOfBullets);
