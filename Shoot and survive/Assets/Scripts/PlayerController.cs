@@ -8,9 +8,11 @@ public class PlayerController : MonoBehaviour
     public int playerHealth;
 
     [Header("Player Movement")]
-    [SerializeField] private float movementSpeed;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float sprintSpeed; 
     [SerializeField] private float jumpHeight;
-    private CharacterController playerController;
+    private float currentMoveSpeed;
+    public static CharacterController playerController;
 
     [Header("Camera Settings")]
     [SerializeField] private float cameraSensitivity;
@@ -62,9 +64,20 @@ public class PlayerController : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
+        if (Input.GetButton("Run"))
+        {
+            currentMoveSpeed = sprintSpeed;
+        }
+        else
+        {
+            currentMoveSpeed = moveSpeed;
+        }
+
         Vector3 move = transform.right * x + transform.forward * z;
 
-        playerController.Move(move * movementSpeed * Time.deltaTime);
+        playerController.Move(move * currentMoveSpeed * Time.deltaTime);
+
+        
     }
 
     private void Gravity()
@@ -89,6 +102,9 @@ public class PlayerController : MonoBehaviour
 
         if(playerHealthStatic <= 0)
         {
+            playerHealthStatic = 0;
+            UIManager.Instance.HealthAmount(playerHealthStatic);
+            GameManager.Instance.Death();
             Debug.Log("Game over, you died");
         }
     }

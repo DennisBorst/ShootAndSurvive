@@ -22,12 +22,13 @@ public class AIController : MonoBehaviour
         resetTimeBetweenAttacks = timeBetweenAttacks;
         player = FindObjectOfType<PlayerController>().gameObject;
         anim = GetComponent<Animator>();
+        agent.stoppingDistance = maxDistanceToTarget;
+        agent.speed = movementSpeed;
     }
 
     void Update()
     {
         float distance = Vector3.Distance(player.transform.position, transform.position);
-        print(distance);
         if (distance > maxDistanceToTarget)
         {
             agent.destination = player.transform.position;
@@ -50,6 +51,5 @@ public class AIController : MonoBehaviour
                 timeBetweenAttacks = resetTimeBetweenAttacks;
             }
         }
-        print(PlayerController.playerHealthStatic);
     }
 }

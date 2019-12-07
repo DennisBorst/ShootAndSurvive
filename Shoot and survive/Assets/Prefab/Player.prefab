@@ -121,9 +121,8 @@ GameObject:
   - component: {fileID: 3713148798119319307}
   - component: {fileID: 3713148798119319311}
   - component: {fileID: 3713148798119319306}
-  - component: {fileID: 3713148798119319316}
   m_Layer: 0
-  m_Name: Player 1
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -190,8 +189,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0a301fccc5ed3d4a8a5d69eb63366dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHealth: 50
   movementSpeed: 20
-  jumpHeight: 5
+  jumpHeight: 4
   cameraSensitivity: 100
   camera: {fileID: 3713148798295286512}
   gravity: -19
@@ -214,20 +214,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponPlaceHolder: {fileID: 3713148799355058318}
   maxPickUpRange: 40
---- !u!114 &3713148798119319316
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3713148798119319310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5d33a204640d3b40ba86c5c3b87daa5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: 1
-  health: 100
 --- !u!1 &3713148798295286517
 GameObject:
   m_ObjectHideFlags: 0

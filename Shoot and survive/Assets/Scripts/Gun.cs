@@ -22,6 +22,8 @@ public class Gun : MonoBehaviour
     [SerializeField] private ParticleSystem muzzleFlash;
     [SerializeField] private GameObject impaktEffect;
     [SerializeField] private LayerMask layersAbleToShoot;
+    [SerializeField] private AudioClip audioClip;
+    private AudioSource audioSource;
     private Camera cam;
     private Animator anim;
 
@@ -32,6 +34,7 @@ public class Gun : MonoBehaviour
         currentReloadTime = reloadTime;
 
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnEnable()
@@ -105,6 +108,8 @@ public class Gun : MonoBehaviour
 
             GameObject impakt = Instantiate(impaktEffect, hit.point, Quaternion.LookRotation(hit.normal));
             Destroy(impakt, 2f);
+            audioSource.clip = audioClip;
+            audioSource.Play();
         }
     }
 
