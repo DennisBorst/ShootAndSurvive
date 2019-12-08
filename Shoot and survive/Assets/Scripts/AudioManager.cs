@@ -6,9 +6,24 @@ public class AudioManager : MonoBehaviour
 {
     private AudioSource audioSource;
 
+    [SerializeField] private AudioSource mainThemeSource;
+
+    [SerializeField] private AudioClip mainThemePC;
+    [SerializeField] private AudioClip mainThemeController;
+
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();    
+        audioSource = GetComponent<AudioSource>();
+
+#if USE_KEY_BOARD
+        mainThemeSource.clip = mainThemePC;
+#endif //USE_KEY_BOARD
+
+#if USE_CONTROLLER
+        mainThemeSource.clip = mainThemeController;
+#endif //USE_CONTROLLER
+
+        mainThemeSource.Play();
     }
 
     public void PlaySound(AudioClip audioClip)

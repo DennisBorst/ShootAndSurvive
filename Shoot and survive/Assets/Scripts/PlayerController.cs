@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public PlayerStats playerStats;
+
     public static int playerHealthStatic;
     public int playerHealth;
 
@@ -28,10 +30,10 @@ public class PlayerController : MonoBehaviour
     private Vector3 velocity;
 
     //Input
-    //private float horizontalMovement;
-    //private float verticalMovement;
-    //private float horizontalCamera;
-    //private float verticalCamera;
+    private float horizontalMovement;
+    private float verticalMovement;
+    private float horizontalCamera;
+    private float verticalCamera;
 
     private KeyCode jumpKey;
     private KeyCode sprintKey;
@@ -42,9 +44,19 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         playerController = GetComponent<CharacterController>();
 
-        playerHealthStatic = playerHealth;
+        //playerHealthStatic = playerHealth;
+        playerHealth = playerStats.health;
+        playerHealthStatic = playerStats.health;
+        moveSpeed = playerStats.walkSpeed;
+        sprintSpeed = playerStats.sprintSpeed;
+        cameraSensitivity = playerStats.cameraSensitivity;
 
         //Input
+        horizontalMovement = Input.GetAxis(WrapperInput.Instance.horizontalMovement);
+        verticalMovement = Input.GetAxis(WrapperInput.Instance.verticalMovement);
+        horizontalCamera = Input.GetAxis(WrapperInput.Instance.horizontalCamera);
+        verticalCamera = Input.GetAxis(WrapperInput.Instance.verticalCamera);
+
         jumpKey = WrapperInput.Instance.jumpKey;
         sprintKey = WrapperInput.Instance.sprintKey;
     }
@@ -52,6 +64,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        horizontalMovement = Input.GetAxis(WrapperInput.Instance.horizontalMovement);
+        verticalMovement = Input.GetAxis(WrapperInput.Instance.verticalMovement);
+        horizontalCamera = Input.GetAxis(WrapperInput.Instance.horizontalCamera);
+        verticalCamera = Input.GetAxis(WrapperInput.Instance.verticalCamera);
 
         UIManager.Instance.HealthAmount(playerHealthStatic);
         isGrounded = Physics.CheckSphere(groundCheck.position, circleRadius, groundLayer);
@@ -63,10 +79,8 @@ public class PlayerController : MonoBehaviour
 
     private void CameraRotation()
     {
-        float mouseX = Input.GetAxis("MouseX") * cameraSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("MouseY") * cameraSensitivity * Time.deltaTime;
-
-        Debug.Log(mouseX);
+        float mouseX = horizontalCamera * cameraSensitivity * Time.deltaTime;
+        float mouseY = verticalCamera * cameraSensitivity * Time.deltaTime;
 
         yCameraDirection -= mouseY;
         yCameraDirection = Mathf.Clamp(yCameraDirection, -70f, 70f);
@@ -77,8 +91,8 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerMovement()
     {
-        float x = Input.GetAxis("HorizontalPC");
-        float z = Input.GetAxis("VerticalPC");
+        float x = horizontalMovement;
+        float z = verticalMovement;
 
         if (Input.GetKey(sprintKey))
         {
@@ -115,6 +129,7 @@ public class PlayerController : MonoBehaviour
     public static void TakeDamage(int damage)
     {
         playerHealthStatic -= damage;
+        UIManager.Instance.TakeDamage();
 
         if(playerHealthStatic <= 0)
         {

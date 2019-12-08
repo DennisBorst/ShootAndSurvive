@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2014262333412708116}
   - component: {fileID: 2014262333412708117}
   - component: {fileID: 2014262333412708114}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 2014262333913205057}
   - component: {fileID: 976639441}
   - component: {fileID: 2888642937144866479}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -205,6 +205,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: 35ef797624155b241a19ac9bd7022b7c, type: 3}
+  deathEffect: {fileID: 2555335555051336665, guid: 22a17916d529ba54eacd2bb0287c7a1c,
+    type: 3}
   enemyHealth: 100
 --- !u!195 &2014262333913205071
 NavMeshAgent:
@@ -387,6 +389,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MeleeEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 4125ac7c2d1c59f4a918b0c753174448,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9204037664998451723, guid: 4125ac7c2d1c59f4a918b0c753174448,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -9181764624474623085, guid: 4125ac7c2d1c59f4a918b0c753174448,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -5167461361203573827, guid: 4125ac7c2d1c59f4a918b0c753174448,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 4125ac7c2d1c59f4a918b0c753174448,
         type: 3}

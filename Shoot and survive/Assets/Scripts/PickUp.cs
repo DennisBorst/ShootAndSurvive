@@ -44,7 +44,7 @@ public class PickUp : MonoBehaviour
 
     private void PickUpWeapon(GameObject gunObject, Gun gun)
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(pickUpKey))
         {
             gunObject.transform.parent = weaponPlaceHolder.transform;
             gunObject.transform.localPosition = Vector3.zero;
@@ -56,7 +56,7 @@ public class PickUp : MonoBehaviour
 
     private void PickUpItem(PickUpItem pickUpItem)
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(pickUpKey))
         {
             if (pickUpItem.isAmmo)
             {

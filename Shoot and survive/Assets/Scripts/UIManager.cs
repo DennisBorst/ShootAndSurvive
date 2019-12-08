@@ -14,6 +14,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image crosshairHit;
     [SerializeField] private Image crosshairKill;
 
+    [Space]
+
+    [SerializeField] private Image bloodPanel;
+    private float speedUI = 5f;
+
     void Awake()
     {
         instance = this;
@@ -57,6 +62,29 @@ public class UIManager : MonoBehaviour
             crosshairKill.enabled = true;
             yield return new WaitForSeconds(0.15f);
             crosshairKill.enabled = false;
+        }
+    }
+
+    public void TakeDamage()
+    {
+        StartCoroutine(BloodUI());
+    }
+
+    IEnumerator BloodUI()
+    {
+        float t = 0f;
+
+        while (t < 1f)
+        {
+            t += Time.deltaTime * speedUI;
+            bloodPanel.color = new Color(255f, 255f, 255f, t);
+            yield return 0;
+        }
+        while (t > 0f)
+        {
+            t -= Time.deltaTime * speedUI;
+            bloodPanel.color = new Color(255f, 255f, 255f, t);
+            yield return 0;
         }
     }
 

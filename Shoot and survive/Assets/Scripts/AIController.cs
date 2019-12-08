@@ -5,11 +5,11 @@ using UnityEngine;
 using UnityEngine.AI;
 public class AIController : MonoBehaviour
 {    
-    [SerializeField] float movementSpeed = 4f;
-    [SerializeField] float maxDistanceToTarget = 5f;
-    [SerializeField] float timeBetweenAttacks = 1f;
-    [SerializeField] float resetTimeBetweenAttacks;
-    [SerializeField] int damage = 10;
+    [SerializeField] private float movementSpeed = 4f;
+    [SerializeField] private float maxDistanceToTarget = 5f;
+    [SerializeField] private float timeBetweenAttacks = 1f;
+    [SerializeField] private float resetTimeBetweenAttacks;
+    [SerializeField] private int damage = 10;
 
     private GameObject player;
     private float playerHealth;

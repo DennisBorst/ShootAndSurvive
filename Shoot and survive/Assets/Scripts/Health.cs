@@ -5,6 +5,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] private AudioClip audioClip;
+    [SerializeField] private GameObject deathEffect;
     private AudioSource audioSource;
     public int enemyHealth;
 
@@ -22,6 +23,8 @@ public class Health : MonoBehaviour
         {
             AudioManager.Instance.PlaySound(audioClip);
             UIManager.Instance.ShowCrossHairKill();
+            GameObject death = Instantiate(deathEffect, transform.position, Quaternion.identity);
+            Destroy(death, 2f);
             Destroy(this.gameObject);
         }
     }

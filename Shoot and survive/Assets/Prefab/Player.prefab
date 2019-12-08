@@ -118,7 +118,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3713148798119319305}
   - component: {fileID: 3713148798119319304}
-  - component: {fileID: 3713148798119319307}
   - component: {fileID: 3713148798119319311}
   - component: {fileID: 3713148798119319306}
   m_Layer: 0
@@ -163,20 +162,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!136 &3713148798119319307
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3713148798119319310}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 3
-  m_Height: 20
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3713148798119319311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,6 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0a301fccc5ed3d4a8a5d69eb63366dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStats: {fileID: 11400000, guid: adeeee3ca47eb3f4888497b400594d1a, type: 2}
   playerHealth: 50
   moveSpeed: 10
   sprintSpeed: 30
@@ -214,7 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponPlaceHolder: {fileID: 3713148799355058318}
-  maxPickUpRange: 40
+  maxPickUpRange: 20
 --- !u!1 &3713148798295286517
 GameObject:
   m_ObjectHideFlags: 0
