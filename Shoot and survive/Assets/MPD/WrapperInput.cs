@@ -9,6 +9,9 @@ public class WrapperInput : MonoBehaviour
     public PlayerStats playerStats;
     public EnemyStats enemyStats;
 
+    [Header("Enviromental change")]
+    [SerializeField] private Transform enviroment;
+
     //PC
     [Header("Player stats")]
     [Header("PC")]
@@ -30,6 +33,8 @@ public class WrapperInput : MonoBehaviour
     [Header("Enemy stats")]
     [SerializeField] private int damageController;
     [SerializeField] private float enemyMovementSpeedController;
+
+
 
     //Walking
     [HideInInspector] public string horizontalMovement;
@@ -70,6 +75,13 @@ public class WrapperInput : MonoBehaviour
 
     private void PCInput()
     {
+        MeshRenderer[] enviromentalColor = enviroment.GetComponentsInChildren<MeshRenderer>();
+
+        for (int i = 0; i < enviroment.childCount; i++)
+        {
+            enviromentalColor[i].material.color = Color.blue;
+        }
+
         //Player Stats
         playerStats.health = healthPC;
         playerStats.walkSpeed = walkSpeedPC;
@@ -97,6 +109,14 @@ public class WrapperInput : MonoBehaviour
 
     private void ControllerInput()
     {
+
+        MeshRenderer[] enviromentalColor = enviroment.GetComponentsInChildren<MeshRenderer>();
+
+        for (int i = 0; i < enviroment.childCount; i++)
+        {
+            enviromentalColor[i].material.color = Color.red;
+        }
+
         //Player Stats
         playerStats.health = healthController;
         playerStats.walkSpeed = walkSpeedController;

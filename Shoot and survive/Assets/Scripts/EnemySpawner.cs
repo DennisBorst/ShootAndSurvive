@@ -72,6 +72,7 @@ public class EnemySpawner : MonoBehaviour
             else
             {
                 Debug.Log("Game has finished");
+                GameManager.Instance.Win();
             }
         }
     }

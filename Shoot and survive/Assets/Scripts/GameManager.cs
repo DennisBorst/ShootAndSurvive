@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,13 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void Win()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
     public void Death()
     {
         deathCanvas.SetActive(true);
@@ -19,7 +27,6 @@ public class GameManager : MonoBehaviour
         playerController.enabled = false;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-
     }
 
     private static GameManager instance;
