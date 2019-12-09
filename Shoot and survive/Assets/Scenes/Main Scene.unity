@@ -4907,6 +4907,22 @@ MonoBehaviour:
     - {fileID: 2014262333913205057, guid: 395ab6afd31d25541ae04dff08a15cac, type: 3}
     count: 5
     timeBetweenSpawns: 1
+  - enemies:
+    - {fileID: 2014262333913205057, guid: 395ab6afd31d25541ae04dff08a15cac, type: 3}
+    count: 6
+    timeBetweenSpawns: 2
+  - enemies:
+    - {fileID: 2014262333913205057, guid: 395ab6afd31d25541ae04dff08a15cac, type: 3}
+    count: 10
+    timeBetweenSpawns: 3
+  - enemies:
+    - {fileID: 2014262333913205057, guid: 395ab6afd31d25541ae04dff08a15cac, type: 3}
+    count: 5
+    timeBetweenSpawns: 1
+  - enemies:
+    - {fileID: 2014262333913205057, guid: 395ab6afd31d25541ae04dff08a15cac, type: 3}
+    count: 8
+    timeBetweenSpawns: 2
   spawnPoints:
   - {fileID: 1219107692}
   - {fileID: 36109030}
@@ -6492,8 +6508,8 @@ MonoBehaviour:
   healthController: 100
   walkSpeedController: 5
   sprintSpeedController: 20
-  cameraSensitivityController: 50
-  damageController: 15
+  cameraSensitivityController: 70
+  damageController: 10
   enemyMovementSpeedController: 5
   horizontalMovement: 0
   verticalMovement: 0

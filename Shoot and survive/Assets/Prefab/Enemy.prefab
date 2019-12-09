@@ -258,6 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aecfdcbe7683d0f429006d04c90b6fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyStats: {fileID: 11400000, guid: e30f9743d8676f2428548b96981233d5, type: 2}
   movementSpeed: 9
   maxDistanceToTarget: 7
   timeBetweenAttacks: 0.5

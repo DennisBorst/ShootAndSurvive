@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 public class AIController : MonoBehaviour
-{    
+{
+    public EnemyStats enemyStats;
+
     [SerializeField] private float movementSpeed = 4f;
     [SerializeField] private float maxDistanceToTarget = 5f;
     [SerializeField] private float timeBetweenAttacks = 1f;
@@ -18,6 +20,9 @@ public class AIController : MonoBehaviour
 
     private void Start()
     {
+        movementSpeed = enemyStats.movementSpeed;
+        damage = enemyStats.damage;
+
         agent = GetComponent<NavMeshAgent>();
         resetTimeBetweenAttacks = timeBetweenAttacks;
         player = FindObjectOfType<PlayerController>().gameObject;
