@@ -34,8 +34,6 @@ public class WrapperInput : MonoBehaviour
     [SerializeField] private int damageController;
     [SerializeField] private float enemyMovementSpeedController;
 
-
-
     //Walking
     [HideInInspector] public string horizontalMovement;
     [HideInInspector] public string verticalMovement;
